@@ -105,7 +105,7 @@ $(function() {
         },
         mouseNav: function(event) {
             $(window).mousemove(function(event) {
-                if (!isMobile && $body.hasClass('album')) {
+                if ($slider && !isMobile && $body.hasClass('album')) {
                     posX = event.pageX;
                     posY = event.pageY;
                     if (posX > width / 2) {
