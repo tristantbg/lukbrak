@@ -82,7 +82,7 @@ $(function() {
                     app.loadSlider();
                     app.plyr();
                     if (players && players.length > 0) {
-                        if (!$body.hasClass('album') || !$body.hasClass('page')) {
+                        if (!$body.hasClass('album') && !$body.hasClass('page')) {
                             players[0].on('ready', function(event) {
                                 players[0].play();
                             });

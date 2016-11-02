@@ -176,7 +176,9 @@ header
 	opacity 1
 	transition(opacity, 0.5s)
 	+below($tablet)
-		padding 16rem 1.5rem 1.5rem
+		span(1)
+		padding 16rem 1.5rem 0
+		margin-bottom 1.5rem
 
 .slider.slides.nav-next
 	cursor e-resize
@@ -186,9 +188,9 @@ header
 
 .slider
 	width 100%
-	height 100vh
 	hideselect()
 	+above($tablet+1)
+		height 100vh
 		overflow hidden
 	.flickity-viewport
 		+below($tablet)
@@ -196,6 +198,7 @@ header
 	.flickity-slider
 		+below($tablet)
 			transform(none !important)
+			position initial
 	.cell
 		width 100%
 		margin-bottom 3rem
