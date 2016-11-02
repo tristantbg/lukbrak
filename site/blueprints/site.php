@@ -11,6 +11,22 @@ fields:
   description:
     label: Description
     type:  textarea
+  logosvg:
+    label: Custom Logo SVG
+    type: select 
+    options: files
+    width: 1/3
+  logopng:
+    label: Custom Logo PNG
+    type: image
+    width: 1/3
+  logowidth:
+    label: Logo width (%)
+    type: number
+    min: 0
+    max: 100%
+    default: 30
+    width: 1/3
   keywords:
     label: Keywords
     type:  tags

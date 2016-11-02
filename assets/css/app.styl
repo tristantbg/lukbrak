@@ -9,8 +9,10 @@ $tablet = 768px
 $mobile = 400px
 
 // Colors
+$back ?= rgb(238,230,219)
 $primary ?= #fff
-$secondary ?= #000
+$secondary ?= rgb(122,115,105)
+$accent ?= rgb(91,86,78)
 
 // Metrics
 $padding = 10px
@@ -18,30 +20,57 @@ $padding = 10px
 // CSS Reset
 global-reset()
 
-webfont('Franklin Gothic', 'franklingothic', true, 'bold')
+webfont('D', 'D', true, 'normal')
+webfont('DI', 'DI', true, 'normal')
 
 body,html
 	width 100%
 	height 100%
-	background-color $primary
+	background-color $back
 	-webkit-text-size-adjust 100%
 
-body
-	text-rendering optimizeLegibility
-	font-smoothing()
+html
 	font-size 62.5%
+	
+body
+	//text-rendering optimizeLegibility
+	font-smoothing()
+	font-family 'D'
+	font-size 1.4rem
+	color $secondary
 
 p
-	margin-bottom 1em
+	margin-bottom 1rem
+	line-height 1.6em
+
+.italic, em
+	font-family 'DI'
+
+h1
+	font-size 1.5vw
+	margin 3em 0 1em 0
+	+below($tablet)
+		font-size 4.5vw
+
+h1:first-child
+	margin-top 0
+
+.uppercase, h1, h2
+	hideselect()
+	text-transform uppercase
+	letter-spacing .8em
+	margin-left .4em
+	+below($mobile)
+		letter-spacing .6em
 
 ::selection
-	background $secondary
+	background $back
 	
 ::-moz-selection
-	background $secondary
+	background $back
 
 *
-	hideselect()
+	box-sizing()
 
 a, a:hover, a:visited, a:focus
 	color inherit
@@ -49,11 +78,194 @@ a, a:hover, a:visited, a:focus
 	cursor pointer
 
 .loader
+	hideselect()
 	position fixed
 	width 100%
 	height 100%
 	top 0
 	left 0
-	background $primary url('../../images/loader.gif') center no-repeat
+	background $back
 	background-size 15px
 	z-index 10000
+
+img.lazyimg, .content.fullscreen, .plyr
+	transition(opacity, 500ms)
+
+img.lazyimg, .content.fullscreen, .plyr
+	opacity 0
+
+img.lazyimg.lazyloaded, img.lazyimg.flickity-lazyloaded, .content.fullscreen.lazyloaded, .plyr.plyr--ready
+	opacity 1
+
+header
+	position fixed
+	width 100%
+	top 0
+	left 0
+	text-align center
+	padding 5rem 0
+	z-index 200
+	pointer-events none
+	hideselect()
+	#site-title
+		pointer-events auto
+		font-size 1.5vw
+		+below($tablet)
+			font-size 4.5vw
+		img
+			display inline-block
+	#menu
+		padding-top 2em
+		#index, #contact
+			display inline-block
+			pointer-events auto
+			cursor pointer
+			margin 0 .25em
+
+#navigation
+	transition(all, 1s)
+	opacity 0
+	visibility hidden
+	position fixed
+	width 100%
+	height 100%
+	top 0
+	left 0
+	background rgba(238,230,219,0.65)
+	padding 0 20%
+	z-index 100
+	flexbox()
+	justify-content center
+	align-items center
+	hideselect()
+	nav
+		font-size 2.55vw
+		line-height 1.4em
+		+below($laptop)
+			font-size 3.1vw
+		+below($tablet)
+			font-size 2.2rem
+		ul
+			text-align center
+			li
+				display inline-block
+				opacity 0
+				transform(translateY(25%))
+				transition(all, 700ms)
+				backface-visibility hidden
+			for num in (1..15)
+				li:nth-child({num})
+					vendor(transition-delay, 700+70*(num - 1) ms)
+			li.clear
+				width 100%
+			li a
+				transition(color, 600ms)
+			li a:hover
+				color $accent
+				//transform(scale(1.02) translateZ(0))
+
+#navigation.visible
+	opacity 1
+	visibility visible
+	nav
+		li
+			opacity 1
+			transform(translateY(0%))
+
+#container
+	opacity 1
+	transition(opacity, 0.5s)
+	+below($tablet)
+		padding 16rem 1.5rem 1.5rem
+
+.slider.slides.nav-next
+	cursor e-resize
+
+.slider.slides.nav-prev
+	cursor w-resize
+
+.slider
+	width 100%
+	height 100vh
+	hideselect()
+	+above($tablet+1)
+		overflow hidden
+	.flickity-viewport
+		+below($tablet)
+			overflow initial
+	.flickity-slider
+		+below($tablet)
+			transform(none !important)
+	.cell
+		width 100%
+		margin-bottom 3rem
+		+below($tablet)
+			position initial !important
+		+above($tablet+1)
+			height 100%
+			margin-bottom 0
+			flexbox()
+			justify-content center
+			align-items center
+		.content
+			height 100%
+			width auto
+			+below($tablet)
+				position initial
+				width 100%
+				height auto !important
+				margin-left 0 !important
+			img
+				width auto
+				height 100%
+				+below($tablet)
+					width 100%
+					height auto
+		.content.video
+			height auto
+			cursor auto
+			+below($tablet)
+				width 100% !important
+		.content.fullscreen
+			background-size cover
+			background-position center
+			width 100%
+			height 100%
+			img
+				display none
+				+below($tablet)
+					display block
+		.caption
+			text-align center
+			width 100%
+			+below($tablet)
+				padding 0 20%
+				margin-top 1rem
+			+above($tablet+1)
+				position absolute
+				z-index 200
+				width 34%
+				bottom 5rem
+				left 50%
+				margin-left -17%
+
+body.page
+	#container
+		+above($tablet+1)
+			flexbox()
+			justify-content center
+			align-items center
+			min-height 100vh
+		.inner
+			padding 0 35%
+			text-align center
+			+below($tablet)
+				padding 0
+
+body.leaving
+	#navigation
+		opacity 0
+		transition(opacity, 1s)
+		//vendor(transition-delay, 0.5s)
+	#container
+		opacity 0

@@ -66,6 +66,50 @@
 	<?php endif ?>
 
 </head>
-<body>
+<body <?php if($page->content()->name() == 'album'){ echo ' class="album"'; } elseif($page->content()->name() == 'default'){ echo ' class="page"'; } ?>>
 
 <div class="loader"></div>
+
+<header>
+	<div id="site-title" class="uppercase">
+	<?php if($site->logopng()->isNotEmpty() && $site->logosvg()->isNotEmpty()): ?>
+		<a href="<?= $site->url() ?>" data-title="<?= $site->title()->html() ?>" data-target="index">
+			<img src="<?= $site->logosvg()->toFile()->url() ?>" onerror="this.src='<?= $site->image($site->logopng())->url() ?>'; this.onerror=null;" alt="<?= $site->title()->html() ?>" width="<?= $site->logowidth() ?>%">
+		</a>
+	<?php else: ?>
+		<a href="<?= $site->url() ?>" data-title="<?= $site->title()->html() ?>" data-target="index"><?= $site->title()->html() ?></a>
+	<?php endif ?>
+	</div>
+	<div id="menu">
+		<div id="index" class="italic">
+			<?php $index = $pages->find('index'); ?>
+			<?= $index->title()->html() ?>
+		</div>
+		<div id="contact" class="italic">
+			<?php $contact = $pages->find('contact'); ?>
+			<a href="<?= $contact->url() ?>" data-title="<?= $contact->title()->html() ?>" data-target="page"><?= $contact->title()->html() ?></a>
+		</div>
+	</div>
+</header>
+
+<div id="navigation">
+	<?php $albums = $index->children()->visible() ?>
+	<nav>
+		<ul>
+			<?php foreach($albums as $album): ?>
+			<?php $titleformat = $album->titleformatting()->split() ?>
+				<li class="uppercase<?php e(in_array('clear', $titleformat), ' clear') ?><?php e(in_array('italic', $titleformat), ' italic') ?><?php e($album->isOpen(), ' active') ?>">
+				<?php if($album->externallink()->isEmpty()): ?>
+					<a class="album-title" href="<?php echo $album->url() ?>" data-title="<?= $album->title()->html() ?>" data-target="album">
+				<?php else: ?>
+					<a href="<?= $album->externallink() ?>" target="_blank">
+				<?php endif ?>
+				<?php if(in_array('comma', $titleformat)){ echo $album->title()->html().', '; } else { echo $album->title()->html(); } ?>
+				</a>
+				</li>
+			<?php endforeach ?>
+		</ul>
+	</nav>
+</div>
+
+<div id="container">
