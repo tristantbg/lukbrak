@@ -105,7 +105,7 @@ $(function() {
         },
         mouseNav: function(event) {
             $(window).mousemove(function(event) {
-                if ($body.hasClass('album') && !isMobile) {
+                if (!isMobile && $body.hasClass('album')) {
                     posX = event.pageX;
                     posY = event.pageY;
                     if (posX > width / 2) {
@@ -127,7 +127,7 @@ $(function() {
                 imagesLoaded: true,
                 //lazyLoad: 2,
                 setGallerySize: false,
-                friction: 0.33,
+                friction: 0.30,
                 selectedAttraction: 0.020,
                 //percentPosition: false,
                 wrapAround: true,
@@ -200,9 +200,11 @@ $(function() {
                         $body.attr('class', 'page leaving');
                     } else {
                         $body.attr('class', '');
-                        players[0].on('ready', function(event) {
-                            players[0].play();
-                        });
+                        if (players && players.length > 0) {
+                            players[0].on('ready', function(event) {
+                                players[0].play();
+                            });
+                        }
                     }
                 });
             }, 1000);
