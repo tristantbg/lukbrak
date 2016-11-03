@@ -80,13 +80,15 @@ $(function() {
                 $(window).load(function() {
                     app.sizeSet();
                     app.loadSlider();
-                    app.plyr();
-                    if (players && players.length > 0) {
-                        if (!$body.hasClass('album') && !$body.hasClass('page')) {
+                    if (!$body.hasClass('album') && !$body.hasClass('page')) {
+                        app.plyr(true);
+                        if (players && players.length > 0) {
                             players[0].on('ready', function(event) {
                                 players[0].play();
                             });
                         }
+                    } else {
+                        app.plyr(false);
                     }
                     app.mouseNav();
                     $(".loader").fadeOut("fast");
@@ -116,8 +118,9 @@ $(function() {
                 }
             });
         },
-        plyr: function() {
+        plyr: function(loop) {
             players = plyr.setup('.js-player', {
+                loop: loop,
                 iconUrl: "/lucbraquet/assets/images/plyr.svg"
             });
         },
@@ -192,14 +195,16 @@ $(function() {
                     }, 100);
                     nav.classList.remove("visible");
                     void nav.offsetWidth;
-                    app.plyr();
                     if (content.type == 'album') {
                         $body.attr('class', 'album leaving');
+                        app.plyr(false);
                         app.loadSlider();
                     } else if (content.type == 'page') {
                         $body.attr('class', 'page leaving');
+                        app.plyr(false);
                     } else {
                         $body.attr('class', '');
+                        app.plyr(true);
                         if (players && players.length > 0) {
                             players[0].on('ready', function(event) {
                                 players[0].play();

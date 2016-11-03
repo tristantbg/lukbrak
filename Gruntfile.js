@@ -42,7 +42,7 @@ module.exports = function(grunt) {
           },
           target: {
             files: {
-              'assets/css/build/build.min.css': ['lib/normalize-css/normalize.css', 'lib/plyr/src/scss/plyr.css', 'assets/oembed/oembed.css', 'lib/flickity/css/flickity.css', 'assets/css/app.min.css']
+              'assets/css/build/build.min.css': ['lib/normalize-css/normalize.css', 'lib/luc-custom-plyr-styles/scss/plyr.css', 'assets/oembed/oembed.css', 'lib/flickity/css/flickity.css', 'assets/css/app.min.css']
             }
           }
         },
