@@ -7,7 +7,7 @@
 <div class="slider<?php if ($slides->count() > 1) { echo ' slides'; } ?>">
 	
 	<?php foreach ($slides as $index => $slide): ?>
-		<div class="cell">
+		<div class="cell" data-id="page-<?= $index+1 ?>">
 			<?php if($slide->_fieldset() == 'image' && $slide->layout()->isEmpty()): ?>
 			
 			<?php $image = $page->image($slide->content());

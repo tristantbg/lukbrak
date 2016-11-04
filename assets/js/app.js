@@ -139,6 +139,10 @@ $(function() {
                 draggable: Modernizr.touchevents
             });
             flkty = $slider.data('flickity');
+            var hash = window.location.hash.substr(1);
+            $slider.flickity('selectCell', '[data-id="' + hash + '"]', true, true);
+            var count = $(flkty.selectedElement).attr('data-id');
+            window.location.hash = count;
             if (flickityFirst) {
                 $('body').on('click touchstart', '.prev', function(e) {
                     e.preventDefault();
@@ -158,6 +162,8 @@ $(function() {
                         }
                     }
                 }
+                count = $(flkty.selectedElement).attr('data-id');
+                window.location.hash = count;
             });
             // $slider.on('staticClick.flickity', function(event, pointer, cellElement, cellIndex) {
             //     if (!cellElement) {
