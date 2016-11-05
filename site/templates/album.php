@@ -13,15 +13,16 @@
 			<?php $image = $page->image($slide->content());
 				  $caption = $slide->caption();
 			      $height = $slide->height();
+			      $imagesize = $slide->imagesize();
+			      $contain = $slide->contain()->bool();
 			?>
 			<?php $srcset = '';
 				  for ($i = 500; $i <= 5000; $i += 500) $srcset .= resizeOnDemand($image, $i) . ' ' . $i . 'w,';
 			?>
 			
-			<div class="content lazyload<?php if($height->isEmpty()){ echo ' fullscreen'; } ?>" 
-			<?php if($height->isEmpty()): ?>
+			<div class="content lazyload<?php if($imagesize == 'full' && !$contain){ echo ' fullscreen'; } elseif($imagesize == 'full' && $contain){ echo ' contain'; } ?>" 
+			<?php if($imagesize == 'full'): ?>
 			data-bgset="<?= $srcset ?>" data-sizes="auto"
-			style="margin-left: <?= $slide->imageposition() ?>%"
 			<?php else: ?>
 			style="height: <?= $height ?>%; margin-left: <?= $slide->imageposition() ?>%"
 			<?php endif ?>>

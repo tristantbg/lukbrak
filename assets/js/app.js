@@ -4,6 +4,7 @@ var width = $(window).width(),
     content,
     isMobile,
     $slider = null,
+    flkty,
     flickityFirst = true,
     players,
     $root = '/lucbraquet';
@@ -139,10 +140,12 @@ $(function() {
                 draggable: Modernizr.touchevents
             });
             flkty = $slider.data('flickity');
-            var hash = window.location.hash.substr(1);
-            $slider.flickity('selectCell', '[data-id="' + hash + '"]', true, true);
-            var count = $(flkty.selectedElement).attr('data-id');
-            window.location.hash = count;
+            if ($slider && flkty) {
+                var hash = window.location.hash.substr(1);
+                $slider.flickity('selectCell', '[data-id="' + hash + '"]', true, true);
+                var count = $(flkty.selectedElement).attr('data-id');
+                window.location.hash = count;
+            }
             if (flickityFirst) {
                 $('body').on('click touchstart', '.prev', function(e) {
                     e.preventDefault();
@@ -201,6 +204,7 @@ $(function() {
                     }, 100);
                     nav.classList.remove("visible");
                     void nav.offsetWidth;
+                    $body.scrollTop(0);
                     if (content.type == 'album') {
                         $body.attr('class', 'album leaving');
                         app.plyr(false);

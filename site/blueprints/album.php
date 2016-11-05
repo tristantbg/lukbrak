@@ -78,12 +78,31 @@ fields:
             max: 50
             help: 0 to center
             width: 1/2
+          imagesize:
+            label: Image size
+            type: fieldtoggle
+            default: custom
+            width: 1/2
+            options:
+              full: Fullscreen 
+              custom: Custom
+            show:
+              full: contain
+              custom: height
+            hide:
+              full: height
+              custom: contain
           height:
             label: Height (%)
             type: number
             default: 100
             min: 0
             help: Leave empty for fullscreen
+            width: 1/2
+          contain:
+            label: Contain image
+            type: toggle
+            default: no
             width: 1/2
       video:
         label: Video

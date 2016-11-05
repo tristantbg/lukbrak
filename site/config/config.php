@@ -29,8 +29,7 @@ of the system, please check out http://getkirby.com/docs/advanced/options
 
 */
 
-c::set('oembed.lazyvideo', true);
-c::set('plugin.oembed.providers.jsapi', false);
+c::set('debug', true);
 c::set('sitemap.exclude', array('error'));
 c::set('sitemap.important', array('contact'));
 c::set('thumb.quality', 100);

@@ -197,13 +197,20 @@ header
 		+below($tablet)
 			overflow initial
 	.flickity-slider
+		transform(none !important)
 		+below($tablet)
 			transform(none !important)
 			position initial
 	.cell
 		width 100%
-		margin-bottom 3rem
+		left 0 !important
+		opacity 0
+		transition(opacity, 800ms)
+		z-index -1
 		+below($tablet)
+			opacity 1
+			z-index 0
+			margin-bottom 3rem
 			position initial !important
 		+above($tablet+1)
 			height 100%
@@ -230,15 +237,21 @@ header
 			cursor auto
 			+below($tablet)
 				width 100% !important
-		.content.fullscreen
-			background-size cover
+		.content.fullscreen, .content.contain
 			background-position center
+			background-repeat no-repeat
 			width 100%
 			height 100%
+			+below($tablet)
+				background none
 			img
 				display none
 				+below($tablet)
 					display block
+		.content.fullscreen
+			background-size cover
+		.content.contain
+			background-size contain
 		.caption
 			text-align center
 			width 100%
@@ -252,6 +265,9 @@ header
 				bottom 5rem
 				left 50%
 				margin-left -17%
+	.cell.is-selected
+		opacity 1
+		z-index 0
 
 body.page
 	#container
