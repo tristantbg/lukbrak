@@ -3,6 +3,11 @@
 title: Album
 files: true
 pages: false
+files:
+  fields:
+    focus:
+      label: Crop focus point 
+      type: focus
 fields:
   title:
     label: Title

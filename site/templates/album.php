@@ -105,7 +105,7 @@
 
 			<?php if($slide->_fieldset() == 'image' && $page->image($slide->content()) !== null): ?>
 				<?php $slideIndex++ ?>
-				<?php $image = thumb($page->image($slide->content()), array('width' => 60, 'height' => 84, 'crop' => true, 'quality' => 90))->url(); ?>
+				<?php $image = $page->image($slide->content())->focusCrop( 60,84,array('quality' => 90) )->url(); ?>
 				<a class="thumbnail" href="#page-<?= $slideIndex ?>">
 					<figure>
 						<img class="lazyimg lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $image ?>" height="auto" width="60px">
@@ -115,7 +115,7 @@
 			<?php elseif($slide->_fieldset() == 'video'): ?>
 				<?php $slideIndex++ ?>
 				<?php if($page->image($slide->image()) !== null): ?>
-					<?php $image = thumb($page->image($slide->image()), array('width' => 60, 'height' => 84, 'crop' => true, 'quality' => 90))->url(); ?>
+				<?php $image = $page->image($slide->image())->focusCrop( 60,84,array('quality' => 90) )->url(); ?>
 					<a class="thumbnail" href="#page-<?= $slideIndex ?>">
 						<figure>
 							<img class="lazyimg lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?= $image ?>" height="auto" width="60px">
