@@ -46,7 +46,7 @@
 					</noscript>	
 
 					<?php if($caption->isNotEmpty()): ?>
-						<div class="caption" style="left: <?= $slide->captionposition()->value() + 50 ?>%">
+						<div class="caption<?php if($slide->captionlight()->bool()){ echo ' light'; } ?>" style="left: <?= $slide->captionposition()->value() + 50 ?>%">
 							<?= $caption->kt() ?>
 						</div>
 					<?php endif ?>
@@ -126,7 +126,7 @@
 			<?php elseif($slide->_fieldset() == 'layout' && $slide->content()->isNotEmpty()): ?>
 				<a class="thumbnail">
 				<figure>
-					<img class="lazyimg lazyload" src="data:image/svg+xml;base64,<?= $index->file($slide->content())->base64() ?>" height="auto" width="60px">
+					<img class="lazyimg lazyload" src="data:image/svg+xml;base64,<?= $index->file($slide->content())->base64() ?>" height="84px" width="60px">
 					<figcaption><em>X</em></figcaption>
 				</figure>
 				</a>

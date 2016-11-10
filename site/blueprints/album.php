@@ -84,7 +84,14 @@ fields:
             min: -50
             max: 50
             help: 0 to center
-            width: 1/2
+            width: 1/4
+          captionlight:
+            label: Light caption
+            type: toggle
+            text: yes/no
+            default: no
+            columns: 1
+            width: 1/4
           imagesize:
             label: Image size
             type: fieldtoggle
