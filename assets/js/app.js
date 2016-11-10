@@ -5,7 +5,6 @@ var width = $(window).width(),
     isMobile,
     $slider = null,
     flkty,
-    flickityFirst = true,
     players,
     $root = '/lucbraquet';
 $(function() {
@@ -33,6 +32,10 @@ $(function() {
                     event.preventDefault();
                     $nav.toggleClass('visible');
                 });
+                $body.on('click', '#flattoggle', function(event) {
+                    event.preventDefault();
+                    $body.toggleClass('flatplan-active');
+                });
                 $body.on('click', '.slider.nav-prev', function(event) {
                     event.preventDefault();
                     if ($('.cell.is-selected .content.video').has(event.target).length == 0) {
@@ -50,7 +53,7 @@ $(function() {
                         $nav.toggleClass('visible');
                     }
                 });
-                $('body').on('click', '[data-target]', function(e) {
+                $body.on('click', '[data-target]', function(e) {
                     $el = $(this);
                     e.preventDefault();
                     if ($el.data('target') == "album") {
@@ -66,16 +69,22 @@ $(function() {
                         app.goIndex();
                     }
                 });
+                $body.on('click', '.thumbnail', function(event) {
+                    if ($slider && flkty) {
+                        var hash = $(this).attr('href').substr(1);
+                        $slider.flickity('selectCell', '[data-id="' + hash + '"]', true, true);
+                    }
+                });
                 //esc
                 $(document).keyup(function(e) {
                     if (e.keyCode === 27) app.goIndex();
                 });
                 //left
-                $(document).keyup(function(e) {
+                $(document).keypress(function(e) {
                     if (e.keyCode === 37 && $slider) app.goPrev($slider);
                 });
                 //right
-                $(document).keyup(function(e) {
+                $(document).keypress(function(e) {
                     if (e.keyCode === 39 && $slider) app.goNext($slider);
                 });
                 $(window).load(function() {
@@ -92,7 +101,7 @@ $(function() {
                         app.plyr(false);
                     }
                     app.mouseNav();
-                    $(".loader").fadeOut("fast");
+                    $(".loader").fadeOut(800);
                 });
             });
         },
@@ -146,17 +155,6 @@ $(function() {
                 var count = $(flkty.selectedElement).attr('data-id');
                 window.location.hash = count;
             }
-            if (flickityFirst) {
-                $('body').on('click touchstart', '.prev', function(e) {
-                    e.preventDefault();
-                    app.goPrev($slider);
-                });
-                $('body').on('click touchstart', '.next', function(e) {
-                    e.preventDefault();
-                    app.goNext($slider);
-                });
-                flickityFirst = false;
-            }
             $slider.on('select.flickity', function() {
                 if ($('.plyr--playing').length > 0) {
                     for (var i = players.length - 1; i >= 0; i--) {
@@ -179,9 +177,11 @@ $(function() {
             // });
         },
         goNext: function($slider) {
+            $body.removeClass('flatplan-active');
             $slider.flickity('next', false);
         },
         goPrev: function($slider) {
+            $body.removeClass('flatplan-active');
             $slider.flickity('previous', false);
         },
         goIndex: function() {

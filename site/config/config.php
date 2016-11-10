@@ -35,13 +35,13 @@ c::set('sitemap.important', array('contact'));
 c::set('thumb.quality', 100);
 //c::set('thumbs.driver', 'im');
 c::set('routes', array(
-	// array(
-	// 	'pattern' => 'info/(:any)',
-	// 	'action'  => function($uri,$uid) {
-	// 		$page = site()->homePage();
-	// 		go($page);
-	// 	}
-	// 	),
+	array(
+		'pattern' => 'index',
+		'action'  => function() {
+			$page = site()->homePage();
+			go($page);
+		}
+		),
 	array(
 		'pattern' => 'robots.txt',
 		'action' => function () {

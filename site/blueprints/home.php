@@ -17,13 +17,15 @@ fields:
                <td>Image position</td>
                <td>Caption</td>
                <td>Caption position</td>
+               <td>Image size</td>
                <td>Height</td>
                </tr>
                <tr>
-               <td style="width:20%"><img src="{{_fileUrl}}{{content}}" width="80px"><br>{{content}}</td>
+               <td style="width:20%"><img src="{{_thumb}}" width="80px"><br>{{content}}</td>
                <td>{{imageposition}}</td>
                <td>{{caption}}</td>
                <td>{{captionposition}}</td>
+               <td>{{imagesize}}</td>
                <td>{{height}}</td>
                </tr>
                </table>
@@ -43,7 +45,7 @@ fields:
             required: true
             min: -100
             max: 100
-            help: 0 to center
+            help: 0 to center +/- 100 to align right or left
             width: 1/2
           captionposition:
             label: Caption position
@@ -73,7 +75,7 @@ fields:
             type: number
             default: 100
             min: 0
-            help: Leave empty for fullscreen
+            required: true
             width: 1/2
           contain:
             label: Contain image

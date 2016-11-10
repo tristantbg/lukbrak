@@ -13,8 +13,8 @@
 <?php endif ?>
 	<script>
 		var $sitetitle = '<?= $site->title()->html() ?>';
-		window.lazySizesConfig = window.lazySizesConfig || {};
-		lazySizesConfig.loadMode = 3;
+		//window.lazySizesConfig = window.lazySizesConfig || {};
+		//lazySizesConfig.loadMode = 3;
 	</script>
 	<?php
 	echo js(array('assets/js/build/plugins.js', 'assets/js/build/app.min.js'));

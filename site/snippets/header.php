@@ -39,7 +39,7 @@
 	<?php endif ?>
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="<?= html($page->url()) ?>" />
-	<?php if($page->content()->name() == "project"): ?>
+	<?php if($page->content()->name() == "album"): ?>
 		<?php if (!$page->featured()->empty()): ?>
 			<meta property="og:image" content="<?= resizeOnDemand($page->image($page->featured()), 1200) ?>"/>
 		<?php endif ?>
@@ -68,7 +68,8 @@
 	<?php endif ?>
 
 </head>
-<body <?php if($page->content()->name() == 'album'){ echo ' class="album"'; } elseif($page->content()->name() == 'default'){ echo ' class="page"'; } ?>>
+<?php $pname = $page->content()->name(); ?>
+<body <?php if($pname == 'album'){ echo ' class="album"'; } elseif($page->isHomepage()) { } else { echo ' class="page"'; } ?>>
 
 <div class="loader"></div>
 
