@@ -124,7 +124,7 @@
 					</a>
 				<?php endif ?>
 			<?php elseif($slide->_fieldset() == 'layout' && $slide->content()->isNotEmpty()): ?>
-				<a class="thumbnail">
+				<a class="thumbnail layout">
 				<figure>
 					<img class="lazyimg lazyload" src="data:image/svg+xml;base64,<?= $index->file($slide->content())->base64() ?>" height="84px" width="60px">
 					<figcaption><em>X</em></figcaption>
