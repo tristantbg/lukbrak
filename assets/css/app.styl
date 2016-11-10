@@ -303,10 +303,11 @@ header
 	right -17px
 	z-index 100
 	height 100vh
+	min-width 285px
 	overflow-y scroll
 	//background rgba(122,115,105,0.9)
 	background rgba(47, 44, 39, 0.9)
-	padding 5rem 75px 20px 5rem
+	padding 5rem 75px 5rem 75px
 	box-shadow(10px 0px 30px 10px rgba(0, 0, 0, 0.4))
 	+below($tablet)
 		display none
@@ -344,7 +345,7 @@ body.flatplan-active
 	#flatplan
 		transform(translate3d(0%,0%,0%))
 	#flattoggle
-		transform(translate3d(-255px,0,0))
+		transform(translate3d(-268px,0,0))
 	#flattoggle::after
 		content 'close'
 
