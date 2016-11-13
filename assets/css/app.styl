@@ -61,7 +61,7 @@ h1:first-child
 	letter-spacing .8em
 	margin-left .4em
 	+below($mobile)
-		letter-spacing .6em
+		letter-spacing .4em
 
 ::selection
 	background $back
@@ -107,9 +107,13 @@ header
 	z-index 300
 	pointer-events none
 	hideselect()
+	+below($tablet)
+		+landscape()
+			z-index 200
 	#site-title
 		font-size 1.5vw
-		padding 0 20%
+		padding 0 5%
+		letter-spacing .5em
 		+below($tablet)
 			font-size 4.5vw
 		a
@@ -147,6 +151,8 @@ header
 		+below($laptop)
 			font-size 3.1vw
 		+below($tablet)
+			font-size 2.5rem
+		+below(350px)
 			font-size 2.2rem
 		ul
 			text-align center
@@ -184,10 +190,10 @@ header
 		padding 16rem 1.5rem 1.5rem
 
 .slider.slides.nav-next
-	cursor e-resize
+	cursor url('../../images/arrow-right.svg') 16 16, url('../../images/arrow-right.png') 16 16, e-resize
 
 .slider.slides.nav-prev
-	cursor w-resize
+	cursor url('../../images/arrow-left.svg') 16 16, url('../../images/arrow-left.png') 16 16, w-resize
 
 .slider
 	width 100%
@@ -286,6 +292,7 @@ header
 	position fixed
 	top 5rem
 	right $padding*2
+	border-bottom 1px solid rgba(122, 115, 105, 0.5)
 	transform(translate3d(0,0,0))
 	cursor pointer
 	z-index 100
@@ -293,9 +300,10 @@ header
 	+below($tablet)
 		display none
 #flattoggle::after
-	content 'see all'
+	content 'Pages'
 
 #flatplan
+	hideselect()
 	position absolute
 	transition(all, 600ms)
 	transform(translate3d(100%,0%,0%))
@@ -303,12 +311,12 @@ header
 	right -17px
 	z-index 100
 	height 100vh
-	min-width 285px
+	min-width 270px
 	overflow-y scroll
 	//background rgba(122,115,105,0.9)
-	background rgba(47, 44, 39, 0.9)
+	background rgba(217, 206, 191, 0.85)
 	padding 5rem 75px 5rem 75px
-	box-shadow(10px 0px 30px 10px rgba(0, 0, 0, 0.4))
+	//box-shadow(10px 0px 30px 10px rgba(0, 0, 0, 0.4))
 	+below($tablet)
 		display none
 	.thumbnail
@@ -326,7 +334,7 @@ header
 			position relative
 			font-size 0.7em
 			text-align left
-			color $back
+			color $accent
 			margin-top 0.3em
 			padding 0 1em
 	.thumbnail:nth-child(1)
@@ -347,7 +355,7 @@ body.flatplan-active
 	#flattoggle
 		transform(translate3d(-268px,0,0))
 	#flattoggle::after
-		content 'close'
+		content 'Close'
 
 body.album
 	+above($tablet + 1)
@@ -365,6 +373,12 @@ body.page
 			text-align center
 			+below($tablet)
 				padding 0
+			figure
+				margin 0
+			img
+				max-width 70%
+				margin 0 auto
+				height auto
 
 body.leaving
 	#navigation

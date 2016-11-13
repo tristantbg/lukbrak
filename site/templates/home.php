@@ -23,7 +23,7 @@
 				for ($i = 500; $i <= 5000; $i += 500) $srcset .= resizeOnDemand($image, $i) . ' ' . $i . 'w,';
 					?>
 				
-				<div class="content lazyload<?php if($imagesize == 'full' && !$contain){ echo ' fullscreen'; } elseif($imagesize == 'full' && $contain){ echo ' contain'; } ?>" 
+				<div class="content lazyimg<?php if ($slides->count() <= 1){ echo ' lazyload'; } ?><?php if($imagesize == 'full' && !$contain){ echo ' fullscreen'; } elseif($imagesize == 'full' && $contain){ echo ' contain'; } ?>" 
 					<?php if($imagesize == 'full'): ?>
 						data-bgset="<?= $srcset ?>" data-sizes="auto"
 					<?php else: ?>
@@ -35,7 +35,7 @@
 					data-srcset="<?= $srcset ?>" 
 					data-sizes="auto" 
 					data-optimumx="1.5" 
-					class="lazyimg lazyload" 
+					class="lazyimg<?php if ($slides->count() <= 1){ echo ' lazyload'; } ?>" 
 					alt="<?php if($caption->isEmpty()){ $page->title()->html() . ' — © '.$site->title(); } else { $caption->html() . ' — © '.$site->title(); } ?>" 
 					width="auto" height="auto">
 

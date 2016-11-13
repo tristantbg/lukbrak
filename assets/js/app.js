@@ -4,13 +4,16 @@ var width = $(window).width(),
     content,
     isMobile,
     $slider = null,
+    $lazyload = null,
     flkty,
     players,
-    $root = '/lucbraquet';
+    $root = '';
 $(function() {
     var app = {
         init: function() {
-            $(window).resize(function(event) {});
+            $(window).resize(function(event) {
+                app.sizeSet();
+            });
             $(document).ready(function($) {
                 $body = $('body');
                 $nav = $('#navigation');
@@ -69,7 +72,7 @@ $(function() {
                         app.goIndex();
                     }
                 });
-                $body.on('click', '.thumbnail', function(event) {
+                $body.on('click', '.thumbnail:not(".layout")', function(event) {
                     if ($slider && flkty) {
                         var hash = $(this).attr('href').substr(1);
                         $slider.flickity('selectCell', '[data-id="' + hash + '"]', true, true);
@@ -109,7 +112,8 @@ $(function() {
             width = $(window).width();
             height = $(window).height();
             if (width <= 770) isMobile = true;
-            if (isMobile) {
+            if (isMobile && $lazyload) {
+                $lazyload.addClass('lazyload');
                 if (width >= 770) {
                     //location.reload();
                 }
@@ -131,7 +135,7 @@ $(function() {
         plyr: function(loop) {
             players = plyr.setup('.js-player', {
                 loop: loop,
-                iconUrl: "/lucbraquet/assets/images/plyr.svg"
+                iconUrl: "/assets/images/plyr.svg"
             });
         },
         loadSlider: function() {
@@ -165,7 +169,13 @@ $(function() {
                 }
                 count = $(flkty.selectedElement).attr('data-id');
                 window.location.hash = count;
+                var adjCellElems = $slider.flickity('getAdjacentCellElements');
+                $(adjCellElems).find('.lazyimg').addClass('lazyload');
             });
+            $lazyload = $('.lazyimg');
+            if (isMobile) {
+                $lazyload.addClass('lazyload');
+            }
             // $slider.on('staticClick.flickity', function(event, pointer, cellElement, cellIndex) {
             //     if (!cellElement) {
             //         return;
@@ -177,12 +187,18 @@ $(function() {
             // });
         },
         goNext: function($slider) {
-            $body.removeClass('flatplan-active');
-            $slider.flickity('next', false);
+            if ($body.hasClass('flatplan-active')) {
+                $body.removeClass('flatplan-active');
+            } else {
+                $slider.flickity('next', false);
+            }
         },
         goPrev: function($slider) {
-            $body.removeClass('flatplan-active');
-            $slider.flickity('previous', false);
+            if ($body.hasClass('flatplan-active')) {
+                $body.removeClass('flatplan-active');
+            } else {
+                $slider.flickity('previous', false);
+            }
         },
         goIndex: function() {
             History.pushState({
@@ -192,6 +208,7 @@ $(function() {
         loadContent: function(url, target) {
             $body.addClass('leaving');
             $slider = null;
+            $lazyload = null;
             setTimeout(function() {
                 $(target).load(url + ' #container .inner', function(response) {
                     setTimeout(function() {
