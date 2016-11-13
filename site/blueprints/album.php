@@ -159,7 +159,7 @@ fields:
             help: 0 to center
             width: 1/2
           captionposition:
-            label: Video position
+            label: Caption position
             type: number
             default: 0
             required: true
@@ -177,6 +177,7 @@ fields:
             label: Thumbnail
             type: image
             required: true
+            width: 1/2
       layout:
         label: Page Layout
         entry: >
