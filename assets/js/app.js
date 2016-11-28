@@ -169,7 +169,7 @@ $(function() {
                 }
                 count = $(flkty.selectedElement).attr('data-id');
                 window.location.hash = count;
-                var adjCellElems = $slider.flickity('getAdjacentCellElements');
+                var adjCellElems = $slider.flickity('getAdjacentCellElements', 1);
                 $(adjCellElems).find('.lazyimg').addClass('lazyload');
             });
             $lazyload = $('.lazyimg');

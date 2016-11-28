@@ -38,11 +38,11 @@
 					data-sizes="auto" 
 					data-optimumx="1.5" 
 					class="lazyimg<?php if ($slides->count() <= 1){ echo ' lazyload'; } ?>" 
-					alt="<?php if($caption->isEmpty()){ $page->title()->html() . ' — © '.$site->title(); } else { $caption->html() . ' — © '.$site->title(); } ?>" 
+					alt="<?php if($caption->isEmpty()){ echo $page->title()->html() . ' — © '.$site->title(); } else { echo str_replace('*', '', $caption->html()) . ' — © '.$site->title(); } ?>" 
 					width="auto" height="auto">
 
 					<noscript>
-						<img class="content" alt="<?php if($caption->isEmpty()){ $page->title()->html() . ' — © '.$site->title(); } else { $caption->html() . ' — © '.$site->title(); } ?>" src="<?= resizeOnDemand($image, 1500) ?>" height="auto" width="auto" />
+						<img class="content" alt="<?php if($caption->isEmpty()){ echo $page->title()->html() . ' — © '.$site->title(); } else { echo str_replace('*', '', $caption->html()) . ' — © '.$site->title(); } ?>" src="<?= resizeOnDemand($image, 1500) ?>" height="auto" width="auto" />
 					</noscript>	
 
 					<?php if($caption->isNotEmpty()): ?>
