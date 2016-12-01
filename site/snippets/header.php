@@ -53,6 +53,14 @@
 	<link rel="shortcut icon" href="<?= url('assets/images/favicon.ico') ?>">
 	<link rel="icon" href="<?= url('assets/images/favicon.ico') ?>" type="image/x-icon">
 
+<!-- 	<script>
+	    // function loadJS(u){var r=document.getElementsByTagName("script")[0],s=document.createElement("script");s.src=u;r.parentNode.insertBefore(s,r);}
+
+	    // if(!window.HTMLPictureElement || !('sizes' in document.createElement('img'))){
+	    //     loadJS("/assets/js/vendor/ls.respimg.min.js");
+	    // }
+	</script> -->
+
 	<?php 
 	echo css('assets/css/build/build.min.css');
 	echo js('assets/js/vendor/modernizr.min.js');

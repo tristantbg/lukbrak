@@ -38,6 +38,7 @@ $(function() {
                 $body.on('click', '#flattoggle', function(event) {
                     event.preventDefault();
                     $body.toggleClass('flatplan-active');
+                    app.flatplanScrollFix();
                 });
                 $body.on('click', '.slider.nav-prev', function(event) {
                     event.preventDefault();
@@ -204,6 +205,15 @@ $(function() {
             History.pushState({
                 type: 'index'
             }, $sitetitle, window.location.origin + $root);
+        },
+        flatplanScrollFix: function() {
+            var flatplan = document.getElementById('flatplan');
+            if (flatplan) {
+                flatplan.style.overflowY = 'hidden';
+                setTimeout(function() {
+                    flatplan.style.overflowY = 'auto';
+                }, 610);
+            }
         },
         loadContent: function(url, target) {
             $body.addClass('leaving');
