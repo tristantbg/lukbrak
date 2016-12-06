@@ -41,15 +41,15 @@
 					alt="<?php if($caption->isEmpty()){ echo $page->title()->html() . ' — © '.$site->title(); } else { echo str_replace('*', '', $caption->html()) . ' — © '.$site->title(); } ?>" 
 					width="auto" height="auto">
 
-					<noscript>
-						<img class="content" alt="<?php if($caption->isEmpty()){ echo $page->title()->html() . ' — © '.$site->title(); } else { echo str_replace('*', '', $caption->html()) . ' — © '.$site->title(); } ?>" src="<?= resizeOnDemand($image, 1500) ?>" height="auto" width="auto" />
-					</noscript>	
-
 					<?php if($caption->isNotEmpty()): ?>
 						<div class="caption<?php if($slide->captionlight()->bool()){ echo ' light'; } ?>" style="left: <?= $slide->captionposition()->value() + 50 ?>%">
 							<?= $caption->kt() ?>
 						</div>
 					<?php endif ?>
+
+					<noscript>
+						<img class="content" alt="<?php if($caption->isEmpty()){ echo $page->title()->html() . ' — © '.$site->title(); } else { echo str_replace('*', '', $caption->html()) . ' — © '.$site->title(); } ?>" src="<?= resizeOnDemand($image, 1500) ?>" height="auto" width="auto" />
+					</noscript>	
 
 				</div>
 				

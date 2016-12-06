@@ -88,13 +88,11 @@ a, a:hover, a:visited, a:focus
 	background-size 15px
 	z-index 10000
 
-img.lazyimg, .content.fullscreen, .plyr, figcaption
+img.lazyimg, .content.fullscreen, .content .caption, .plyr, figcaption
 	transition(opacity, 500ms)
-
-img.lazyimg, .content.fullscreen, .plyr, figcaption
 	opacity 0
 
-img.lazyimg.lazyloaded, img.lazyimg.flickity-lazyloaded, .content.fullscreen.lazyloaded, .plyr.plyr--ready, img.lazyimg.lazyloaded + figcaption
+img.lazyimg.lazyloaded, img.lazyimg.flickity-lazyloaded, .content.fullscreen.lazyloaded, .plyr.plyr--ready, img.lazyimg.lazyloaded + figcaption, .content.lazyloaded .caption, img.lazyimg.lazyloaded + .caption
 	opacity 1
 
 header
