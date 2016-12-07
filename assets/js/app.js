@@ -84,11 +84,11 @@ $(function() {
                     if (e.keyCode === 27) app.goIndex();
                 });
                 //left
-                $(document).keypress(function(e) {
+                $(document).keyup(function(e) {
                     if (e.keyCode === 37 && $slider) app.goPrev($slider);
                 });
                 //right
-                $(document).keypress(function(e) {
+                $(document).keyup(function(e) {
                     if (e.keyCode === 39 && $slider) app.goNext($slider);
                 });
                 $(window).load(function() {
