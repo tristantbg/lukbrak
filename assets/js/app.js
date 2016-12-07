@@ -148,6 +148,7 @@ $(function() {
                 friction: 0.30,
                 selectedAttraction: 0.020,
                 //percentPosition: false,
+                accessibility: false,
                 wrapAround: true,
                 prevNextButtons: false,
                 pageDots: false,
