@@ -232,7 +232,7 @@ $(function() {
                     }, 100);
                     nav.classList.remove("visible");
                     void nav.offsetWidth;
-                    $body.scrollTop(0);
+                    $(window).scrollTop(0);
                     if (content.type == 'album') {
                         $body.attr('class', 'album leaving');
                         app.plyr(false);
