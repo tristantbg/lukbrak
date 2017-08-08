@@ -149,6 +149,14 @@ fields:
             label: Caption
             type: textarea
             width: 1/2
+          vendor:
+            label: Vendor
+            type: radio
+            default: vimeo
+            options:
+              vimeo: Vimeo 
+              youtube: Youtube
+            width: 1/2
           imageposition:
             label: Video position
             type: number
